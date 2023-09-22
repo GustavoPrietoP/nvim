@@ -17,7 +17,8 @@ local mappings = {
     f = { ":Telescope find_files<cr>", "find files" },
     r = { ":Telescope oldfiles<cr>", "recently opened" },
     w = { ":Telescope live_grep<cr>", "find string" },
-    c = { ":lua require('prism.picker').open()<cr>", "kolorschemes" },
+    b = { ":Telescope buffers<cr>", "find buffer" },
+    --c = { ":lua require('prism.picker').open()<cr>", "kolorschemes" },
   },
   g = {
     name = "grapple",
@@ -47,8 +48,14 @@ local mappings = {
     l = { ":hoplinestart<cr>", "line start" },
     v = { ":hopvertical<cr>", "vertically" },
     w = { ":hopword<cr>", "word" },
+  },
 
-  }
+  c = {
+      name = "compiler",
+    o = { "<cmd>CompilerOpen<cr>", "CompilerOpen" },
+    r = { "<cmd>CompilerToggleResults<cr>", "CompilerToggleResults" },
+  },
+
 }
 
 local opts = { prefix = '<leader>' }

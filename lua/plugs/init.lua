@@ -249,12 +249,12 @@ lazy.setup({
     ft = "yuck"
   },
 
-  {
-    "chadcat7/prism",
-    --        commit = "50810ac",
-    lazy = true,
-    events = { "UIEnter" },
-  },
+ -- {
+ --   "chadcat7/prism",
+ --   --        commit = "50810ac",
+ --   lazy = true,
+ --   events = { "UIEnter" },
+ -- },
 
   {
     "goolord/alpha-nvim",
@@ -286,12 +286,30 @@ lazy.setup({
       require("plugs.ui.norg")
     end,
   },
-
-  --  {
-  --      "CRAG666/code_runner.nvim",
-  --      events = "LspAttach",
-  --      config = function ()
-  --          require("plugs.util.code_runner")
-  --      end,
-  --  },
+  {
+  "Zeioth/compiler.nvim",
+  dependencies = {
+    {
+      "stevearc/overseer.nvim",
+      opts = {
+        task_list = { -- this refers to the window that shows the result
+          direction = "bottom",
+          min_height = 25,
+          max_height = 25,
+          default_detail = 1,
+          bindings = {
+            ["q"] = function()
+              vim.cmd("OverseerClose")
+            end,
+          },
+        },
+      },
+      config = function(_, opts)
+        require("overseer").setup(opts)
+      end,
+    },
+  },
+  cmd = { "CompilerOpen", "CompilerToggleResults" },
+  opts = {},
+  }
 })

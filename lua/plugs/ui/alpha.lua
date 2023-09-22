@@ -6,7 +6,6 @@ local buttons = dashCfg.buttons
 local message = dashCfg.message
 local footer = dashCfg.footer
 
-
 -- thanks dharmx
 function makeButton(label, shortcut, hl_label, hl_icon)
   return {

@@ -35,17 +35,19 @@ vim.cmd([[
   nnoremap <silent> <C-Left>  :vertical resize +2<CR>
 ]])
 
+
 -- disable ex mode
 vim.cmd('nnoremap Q <Nop>')
 
 -- disable recording
 vim.cmd('nnoremap q <Nop>')
 
+
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })

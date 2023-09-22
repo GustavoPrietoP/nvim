@@ -7,6 +7,8 @@ saga.setup {
     sign_priority = 40,
     virtual_text = true,
   },
+
+  vim.cmd("autocmd CursorHold * Lspsaga show_cursor_diagnostics ++unfocus"),
   symbol_in_winbar = {
     enable = true,
     separator = "  ",
@@ -17,4 +19,11 @@ saga.setup {
     respect_root = false,
     color_mode = true,
   },
+
+  --diagnostic = {
+  --    max_height = 0.8,
+  --    keys = {
+  --        quit = {'q', '<ESC>'}
+  --    }
+  --}
 }

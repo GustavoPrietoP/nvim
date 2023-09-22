@@ -2,11 +2,11 @@ local lspconfig = require("lspconfig")
 
 local M = {}
 
---M.on_attach = function(client, _)
---  client.server_capabilities.documentFormattingProvider = true
---  client.server_capabilities.documentRangeFormattingProvider = true
---  client.server_capabilities.semanticTokensProvider = true
---end
+M.on_attach = function(client, _)
+  client.server_capabilities.documentFormattingProvider = true
+  client.server_capabilities.documentRangeFormattingProvider = true
+  client.server_capabilities.semanticTokensProvider = true
+end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -57,4 +57,10 @@ lspconfig.lua_ls.setup {
   }
 }
 require('ufo').setup()
+
+vim.diagnostic.config({
+    virtual_text = false
+})
+
+
 return M
