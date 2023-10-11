@@ -20,40 +20,22 @@ local mappings = {
     b = { ":Telescope buffers<cr>", "find buffer" },
     --c = { ":lua require('prism.picker').open()<cr>", "kolorschemes" },
   },
-  g = {
-    name = "grapple",
-    a = { ":grappletag<cr>", "add a bookmark" },
-    t = { ":grappletoggle<cr>", "toggle bookmark" },
-    r = { ":grappleuntag<cr>", "remove bookmark" },
-    g = { ":grapplepopup tags<cr>", "show all bookmarks" }
-  },
   t = {
     name = "terminal",
     t = { ":ToggleTerm<cr>", "split below" },
   },
   l = {
     name = "misc",
-    l = { ":lazy<cr>", "open lazy" },
+    l = { ":Lazy<cr>", "open lazy" },
     c = { ":lua require('telescope') vim.lsp.buf.code_action()<cr>", "show code actions" },
-    m = { ":mason<cr>", "open mason" },
-    s = { ":symbolsoutline<cr>", "overview of file" },
-    w = { ":sessionsave<cr>", "save this session" }
+    m = { ":Mason<cr>", "open mason" },
+    s = { ":SymbolsOutline<cr>", "overview of file" },
   },
-  h = {
-    name = "hop",
-    c = { ":hopchar1<cr>", "single character" },
-    c = { ":hopchar2<cr>", "double characters" },
-    a = { ":hopanywhere<cr>", "anywhere" },
-    l = { ":hopline<cr>", "line" },
-    l = { ":hoplinestart<cr>", "line start" },
-    v = { ":hopvertical<cr>", "vertically" },
-    w = { ":hopword<cr>", "word" },
-  },
-
   c = {
-      name = "compiler",
-    o = { "<cmd>CompilerOpen<cr>", "CompilerOpen" },
-    r = { "<cmd>CompilerToggleResults<cr>", "CompilerToggleResults" },
+    name = "compiler",
+    o = { "<cmd>CompilerOpen<cr>", "Compiler Open" },
+    t = { "<cmd>CompilerToggleResults<cr>", "Compiler Toggle Results" },
+    r = { "<cmd>CompilerRedo<cr>", "Compiler Redo" },
   },
 
 }

@@ -50,7 +50,3 @@ require 'nvim-tree'.setup {
     side = "left",
   },
 }
-vim.cmd [[
-autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-]]

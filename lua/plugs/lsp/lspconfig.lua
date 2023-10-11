@@ -1,66 +1,35 @@
-local lspconfig = require("lspconfig")
+local lsp_zero = require('lsp-zero')
 
-local M = {}
 
-M.on_attach = function(client, _)
-  client.server_capabilities.documentFormattingProvider = true
-  client.server_capabilities.documentRangeFormattingProvider = true
-  client.server_capabilities.semanticTokensProvider = true
-end
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+});
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_zero.extend_lspconfig()
 
-M.capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true
-}
 
-M.capabilities.textDocument.completion.completionItem = {
-  documentationFormat = { "markdown", "plaintext" },
-  snippetSupport = true,
-  preselectSupport = true,
-  insertReplaceSupport = true,
-  labelDetailsSupport = true,
-  deprecatedSupport = true,
-  commitCharactersSupport = true,
-  tagSupport = { valueSet = { 1 } },
-  resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+
+
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+require('mason').setup({})
+
+require('mason-lspconfig').setup({
+  ensure_installed = {},
+  handlers = {
+    lsp_zero.default_setup,
   },
-}
-
-
-local servers = { "html", "pyright", "tsserver", "emmet_ls", "clangd", "cssls", "rnix", "hls", "rust_analyzer", "gopls" }
-for _, k in ipairs(servers) do
-  lspconfig[k].setup {
-    on_attach = M.on_attach,
-    capabilities = M.capabilities,
-  }
-end
-lspconfig.lua_ls.setup {
-  on_attach = M.on_attach,
-  capabilities = M.capabilities,
-
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace"
-      },
-      diagnostics = {
-        globals = { "vim", "awesome", "client", "screen", "mouse" },
-      },
-    },
-  }
-}
-require('ufo').setup()
-
-vim.diagnostic.config({
-    virtual_text = false
 })
-
-
-return M
