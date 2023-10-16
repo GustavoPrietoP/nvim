@@ -40,7 +40,7 @@ require 'nvim-tree'.setup {
     exclude = { '.git', 'node_modules', '.cache' },
   },
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_root = true,
   },
 
