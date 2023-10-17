@@ -13,13 +13,6 @@ lazy.setup({
         event = "InsertEnter",
         lazy = true
     },
-    {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = function()
-            require("plugs.ts.autopair")
-        end
-    },
 
     {
         'NvChad/nvim-colorizer.lua',
@@ -60,6 +53,7 @@ lazy.setup({
 
     {
         "nvim-telescope/telescope-ui-select.nvim",
+        lazy = true,
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -104,13 +98,6 @@ lazy.setup({
         end
     },
     {
-        "lukas-reineke/indent-blankline.nvim",
-        lazy = true,
-        main = "ibl",
-        config = function() require('plugs.ui.indentlines') end,
-        event = { "BufRead" },
-    },
-    {
         "williamboman/mason.nvim",
         cmd = {
             "MasonInstall",
@@ -143,37 +130,83 @@ lazy.setup({
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
-
+        lazy = true,
         config = function()
             require('plugs.lsp.lspconfig')
         end,
-    },
-    {
-        'neovim/nvim-lspconfig'
-    },
 
-    {
-        'williamboman/mason-lspconfig.nvim'
+         init = function()
+              -- Disable automatic setup, we are doing it manually
+              vim.g.lsp_zero_extend_cmp = 0
+              vim.g.lsp_zero_extend_lspconfig = 0
+            end,
     },
+      {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        lazy = true,
+        dependencies = {
+          {
+            -- snippet plugin
+            "L3MON4D3/LuaSnip",
+            lazy = true,
+            dependencies = "rafamadriz/friendly-snippets",
+            config = function()
+              require("plugs.lsp.luasnip")
+            end,
+          },
 
-    { 'hrsh7th/cmp-nvim-lsp' },
+          -- autopairing of (){}[] etc
+          {
+            "windwp/nvim-autopairs",
+            opts = {
+              fast_wrap = {},
+              disable_filetype = { "TelescopePrompt", "vim" },
+            },
+            event = "InsertEnter",
+            lazy = true,
+            config = function(_, opts)
+              require("nvim-autopairs").setup(opts)
 
-    {
-        'hrsh7th/nvim-cmp',
+              -- setup cmp for autopairs
+              local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+              require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+            end,
+          },
+
+          -- cmp sources plugins
+          {
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+          },
+        },
         config = function()
-            require("plugs.lsp.cmp")
-        end
-    },
-    { 'L3MON4D3/LuaSnip' },
+          require("plugs.lsp.cmp")
+        end,
+      },
 
---    {
---        "chadcat7/prism",
---        lazy = false,
---        events = { "UIEnter" },
---        config = function()
---            require("plugs.ui.prism")
---        end
---    },
+    {
+        'neovim/nvim-lspconfig',
+        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
+        event = {'BufReadPre', 'BufNewFile'},
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'williamboman/mason-lspconfig.nvim',
+        }
+    },
+
+
+    --{
+    --    "chadcat7/prism",
+    --    lazy = false,
+    --    events = { "UIEnter" },
+    --    config = function()
+    --        require("plugs.ui.prism")
+    --    end
+    --},
 
     {
         "GustavoPrietoP/compiler.nvim",
@@ -201,75 +234,48 @@ lazy.setup({
         cmd = { "CompilerOpen", "CompilerToggleResults" },
         opts = {},
     },
-    {
-        "roobert/palette.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("palette").setup({
-                palettes = {
-                    main = "custom_main_palette",
-                    accent = "custom_accent_palette",
-                    state = "custom_state_palette",
-                },
-
-                custom_palettes = {
-                    main = {
-                        custom_main_palette = {
-                            color0 = "#191d33",
-                            color1 = "#1A1E39",
-                            color2 = "#383f5e",
-                            color3 = "#4e5470",
-                            color4 = "#7b7f94",
-                            color5 = "#a7a9b7",
-                            color6 = "#bdbfc9",
-                            color7 = "#d3d4db",
-                            color8 = "#e9e9ed",
-                        },
-                    },
-                    accent = {
-                        custom_accent_palette = {
-                            accent0 = "#D97C8F",
-                            accent1 = "#D9AE7E",
-                            accent2 = "#D9D87E",
-                            accent3 = "#A5D9A7",
-                            accent4 = "#8BB9C8",
-                            accent5 = "#C9A1D3",
-                            accent6 = "#B8A1D9",
-                        },
-                    },
-                    state = {
-                        custom_state_palette = {
-                            error = "#D97C8F",
-                            warning = "#D9AE7E",
-                            hint = "#D9D87E",
-                            ok = "#A5D9A7",
-                            info = "#8BB9C8",
-                        },
-                    },
-                },
-            })
-
-        end,
-    },
-
-    {
-        dir = "~/.colorschemes/nvchad-themes/aquarium/"
-    },
-
-    {
-        dir = "~/.colorschemes/nvchad-themes/chocolate/"
-    },
-
-    {
-        dir = "~/.colorschemes/nvchad-themes/ashes/"
-    },
 
     {
         dir = "~/.colorschemes/nvchad-themes/rosepine/"
     },
-
-    {
-        dir = "~/.colorschemes/nvchad-themes/chadracula/"
+  -- LSP
+  {
+    'neovim/nvim-lspconfig',
+    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
+    event = {'BufReadPre', 'BufNewFile'},
+    dependencies = {
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'williamboman/mason-lspconfig.nvim'},
     },
+    config = function()
+      -- This is where all the LSP shenanigans will live
+      local lsp_zero = require('lsp-zero')
+      lsp_zero.extend_lspconfig()
+
+      lsp_zero.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp_zero.default_keymaps({buffer = bufnr})
+      end)
+
+      require('mason-lspconfig').setup({
+        ensure_installed = {},
+        handlers = {
+          lsp_zero.default_setup,
+          lua_ls = function()
+            -- (Optional) Configure lua language server for neovim
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+          end,
+        }
+      })
+    end
+  },
+
+  --{
+  --  'tamton-aquib/staline.nvim',
+  --  config = function ()
+  --      require("plugs.ui.statline")
+  --  end
+  --},
 })

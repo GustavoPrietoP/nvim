@@ -53,6 +53,7 @@ require('telescope').setup {
       }
     }
   },
+  extension_list = {"themes", "terms"},
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {

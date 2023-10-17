@@ -2,15 +2,15 @@ local cmd = vim.cmd
 local opt = vim.opt
 local diagnostic = vim.diagnostic
 local g = vim.g
-local config = require("core.cfg")
+local configs = require("core.cfg")
 
 opt.hidden = true
 g.code_action_menu_window_border = 'single'
 opt.ch = 0
 vim.cmd("colorscheme rosepine")
-g.currentTheme = config.colorscheme
+g.currentTheme = configs.colorscheme
 g.theme_cache = vim.fn.stdpath "data" .. "/colors_data/"
---g.statusStyle = config.statusstyle
+g.statusStyle = configs.statusstyle
 opt.pumheight = 10
 opt.cmdheight = 1
 opt.fileencoding = 'utf-8'
@@ -19,8 +19,8 @@ opt.list = true
 opt.splitright = true
 opt.termguicolors = true
 opt.conceallevel = 0
-opt.showtabline = 0
---opt.tabline = ' '
+opt.showtabline = 3
+opt.tabline = ' '
 opt.showmode = false
 opt.backup = false
 opt.number = true
@@ -49,7 +49,7 @@ opt.fillchars:append('eob: ')
 opt.listchars:append "space: "
 cmd('set lazyredraw')
 cmd('set nolist')
-opt.laststatus = 0                  -- Global Status
+opt.laststatus = 3                  -- Global Status
 diagnostic.config { signs = false } -- Removing diagnostic column
 opt.updatetime = 250
 opt.shadafile = "NONE"
