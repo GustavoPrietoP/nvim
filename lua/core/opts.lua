@@ -3,11 +3,16 @@ local opt = vim.opt
 local diagnostic = vim.diagnostic
 local g = vim.g
 local configs = require("core.cfg")
+local config = require("core.utils").load_config()
+
+--require("base46").compile()
+g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+g.nvchad_theme = config.ui.theme
 
 opt.hidden = true
 g.code_action_menu_window_border = 'single'
 opt.ch = 0
-vim.cmd("colorscheme rosepine")
+--vim.cmd("colorscheme rosepine")
 g.currentTheme = configs.colorscheme
 g.theme_cache = vim.fn.stdpath "data" .. "/colors_data/"
 g.statusStyle = configs.statusstyle

@@ -6,8 +6,6 @@ vim.cmd [[
    function! BufflineKillBuf(bufnr,b,c,d)
         call luaeval('require("ui.buf.fn").close_buffer(_A)', a:bufnr)
   endfunction]]
-
---vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('prism.themer'):random() \n endfunction"
 vim.cmd "function! CloseAll(a,b,c,d) \n q \n endfunction"
 vim.api.nvim_create_user_command("BufflinePrev", function()
   require("ui.buf.fn").tabuflinePrev()
@@ -74,7 +72,6 @@ end
 M.getTabline = function()
   local buffline = ""
   local buffstart = "%#BuffLineEmpty#"
-  local button = "%#BufflineButton# %@ToggleTheme@" .. "  "
   local closebutton = "%#BufflineCloseButton# %@CloseAll@" .. " "
   local counter = 0
   for _, buf in pairs(vim.api.nvim_list_bufs()) do
@@ -97,7 +94,7 @@ M.getTabline = function()
   else
     treespace = "%#BufflineTree#" .. string.rep(" ", treeWidth())
   end
-  return treespace .. buffstart .. buffline 
+  return treespace .. buffstart .. buffline .. "%=" ..  closebutton
 end
 
 M.setup = function()
@@ -110,4 +107,5 @@ vim.cmd [[
 nnoremap <silent><TAB> :BufflineNext<CR>
 nnoremap <silent><S-TAB> :BufflinePrev<CR>
 ]]
+
 return M

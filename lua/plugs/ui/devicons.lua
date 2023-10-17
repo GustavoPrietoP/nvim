@@ -53,3 +53,4 @@ local config = {
 
 devicons.set_default_icon("󰈚")
 devicons.setup(config)
+dofile(vim.g.base46_cache .. "devicons")

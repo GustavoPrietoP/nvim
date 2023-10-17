@@ -21,8 +21,9 @@ local mappings = {
     --c = { ":lua require('prism.picker').open()<cr>", "kolorschemes" },
   },
   t = {
-    name = "terminal",
+    name = "Terminal & Theme",
     t = { ":ToggleTerm<cr>", "split below" },
+    h = { ":Telescope themes<cr>", "change NvChad theme"}
   },
   l = {
     name = "misc",
@@ -40,5 +41,8 @@ local mappings = {
 
 }
 
+
 local opts = { prefix = '<leader>' }
 wk.register(mappings, opts)
+
+dofile(vim.g.base46_cache .. "whichkey")
