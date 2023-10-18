@@ -1,23 +1,22 @@
 local M = {}
 
 M.ui = {
-    theme = "catppuccin",
+    theme = "yoru",
 
     statusline = {
-        theme = "minimal", -- default/vscode/vscode_colored/minimal
+        theme = "default", -- default/vscode/vscode_colored/minimal
         -- default/round/block/arrow separators work only for default statusline theme
         -- round and block will work for minimal theme only
-        separator_style = "default",
+        separator_style = "round",
     },
 
     cmp = {
       icons = true,
-      lspkind_text = false,
-      style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
+      lspkind_text = true,
+      style = "flat_dark", -- default/flat_light/flat_dark/atom/atom_colored
       border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
       selected_item_bg = "colored", -- colored / simple
     },
-
 
   -- lazyload it when there are 1+ buffers
    tabufline = {
