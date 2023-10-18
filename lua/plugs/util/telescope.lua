@@ -63,3 +63,4 @@ require('telescope').setup {
   }
 }
 require("telescope").load_extension("ui-select")
+dofile(vim.g.base46_cache .. "telescope")
