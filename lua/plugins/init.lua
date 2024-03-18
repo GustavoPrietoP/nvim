@@ -1,5 +1,8 @@
 local plugins = {
-  { lazy = true, "nvim-lua/plenary.nvim" },
+  {
+    lazy = true,
+    "nvim-lua/plenary.nvim",
+  },
 
   {
     "olivercederborg/poimandres.nvim",
@@ -15,6 +18,20 @@ local plugins = {
       require("colorizer").setup()
     end,
   },
+
+  {
+    "NvChad/base46",
+    lazy = true,
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+  {
+    "NvChad/ui",
+    config = function()
+      require "nvchad"
+    end,
+  },
   {
 
     "EdenEast/nightfox.nvim",
@@ -27,7 +44,6 @@ local plugins = {
       }
     end,
   },
-
   -- file tree
   {
     "nvim-tree/nvim-tree.lua",
@@ -64,13 +80,6 @@ local plugins = {
   },
 
   -- statusline
-
-  {
-    "echasnovski/mini.statusline",
-    config = function()
-      require("mini.statusline").setup { set_vim_settings = false }
-    end,
-  },
 
   -- we use cmp plugin only when in insert mode
   -- so lets lazyload it at InsertEnter event, to know all the events check h-events
@@ -168,17 +177,6 @@ local plugins = {
     end,
   },
 
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-    },
-    config = function ()
-      require "plugins.configs.neogit"
-    end,
-  },
-
   -- git status on signcolumn etc
   {
     "lewis6991/gitsigns.nvim",
@@ -195,6 +193,19 @@ local plugins = {
     config = function()
       require("Comment").setup()
     end,
+  },
+  -- amongst your other plugins
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true,
+  },
+
+  -- rust tools
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    ft = { "rust" },
   },
 }
 
