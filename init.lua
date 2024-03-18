@@ -23,14 +23,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
-
---vim.cmd "colorscheme poimandres"
--- dofile(vim.g.base46_cache .. "defaults")
--- dofile(vim.g.base46_cache .. "syntax")
--- dofile(vim.g.base46_cache .. "treesitter")
--- dofile(vim.g.base46_cache .. "git")
--- dofile(vim.g.base46_cache .. "nvimtree")
-
 local integrations = require("nvconfig").base46.integrations
 
 for _, name in ipairs(integrations) do

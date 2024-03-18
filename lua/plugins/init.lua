@@ -12,6 +12,17 @@ local plugins = {
       require("poimandres").setup {}
     end,
   },
+
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function ()
+      require "plugins.configs.oil"
+    end
+  },
+
   {
     "NvChad/nvim-colorizer.lua",
     config = function()

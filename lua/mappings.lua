@@ -9,13 +9,17 @@ map('n', '<C-j>', '<C-w><C-j>')
 map('n', '<C-k>', '<C-w><C-k>')
 
 -- nvimtree
-map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>")
+map("n", "<leader>e", "<cmd> Oil <CR>")
 
 -- telescope
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>")
+map("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
 map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
+
+
+-- Oil
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clears search highlights", silent = true })
 
