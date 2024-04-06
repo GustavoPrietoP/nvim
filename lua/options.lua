@@ -19,6 +19,9 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 
+opt.pumheight = 20
+opt.guicursor=''
+
 -- Numbers
 opt.number = true
 opt.ruler = false
@@ -33,6 +36,7 @@ opt.swapfile = false
 
 opt.timeoutlen = 400
 opt.updatetime = 250
+
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"

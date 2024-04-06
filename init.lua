@@ -1,5 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
-
 require "options"
 require "mappings"
 require "commands"
@@ -23,8 +21,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
-local integrations = require("nvconfig").base46.integrations
-
-for _, name in ipairs(integrations) do
-  dofile(vim.g.base46_cache .. name)
-end
+vim.cmd "colorscheme mountaineer"

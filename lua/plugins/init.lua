@@ -5,54 +5,31 @@ local plugins = {
   },
 
   {
-    "olivercederborg/poimandres.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("poimandres").setup {}
-    end,
-  },
-
-  {
     "stevearc/oil.nvim",
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function ()
+    config = function()
       require "plugins.configs.oil"
-    end
+    end,
   },
 
+  {
+    "TheNiteCoder/mountaineer.vim",
+    priority = 1000,
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "plugins.configs.lualine"
+    end,
+  },
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
-    end,
-  },
-
-  {
-    "NvChad/base46",
-    lazy = true,
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-  {
-    "NvChad/ui",
-    config = function()
-      require "nvchad"
-    end,
-  },
-  {
-
-    "EdenEast/nightfox.nvim",
-    priority = 1000,
-    config = function()
-      require("nightfox").setup {
-        groups = {
-          all = { VertSplit = { fg = "bg3" } },
-        },
-      }
     end,
   },
   -- file tree
@@ -85,6 +62,14 @@ local plugins = {
   {
     "akinsho/bufferline.nvim",
     event = "BufReadPre",
+    config = function()
+      require "plugins.configs.bufferline"
+    end,
+  },
+
+  {
+    "echasnovski/mini.tabline",
+    version = "*",
     config = function()
       require "plugins.configs.bufferline"
     end,
@@ -196,7 +181,6 @@ local plugins = {
       require("gitsigns").setup()
     end,
   },
-
   -- comment plugin
   {
     "numToStr/Comment.nvim",

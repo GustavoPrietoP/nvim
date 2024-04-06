@@ -24,8 +24,6 @@ map("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clears search highlights", silent = true })
 
 -- bufferline, cycle buffers
-map("n", "<Tab>", "<cmd> BufferLineCycleNext <CR>")
-map("n", "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>")
 map("n", "<leader>bd", "<cmd> bd <CR>")
 
 -- comment.nvim
@@ -45,9 +43,8 @@ map('t', '<C-k>', [[<Cmd>wincmd k<CR>]] )
 map('t', '<C-l>', [[<Cmd>wincmd l<CR>]] )
 map('t', '<C-w>', [[<C-\><C-n><C-w>]] )
 
-
-
 -- format
+--
 map("n", "<leader>fm", function()
   require("conform").format()
 end)
