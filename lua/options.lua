@@ -2,7 +2,7 @@ local opt = vim.opt
 
 vim.g.mapleader = " "
 
-opt.laststatus = 3 -- global statusline
+opt.laststatus = 2 -- global statusline
 opt.showmode = false
 
 opt.clipboard = "unnamedplus"
@@ -19,12 +19,15 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
 
-opt.pumheight = 20
-opt.guicursor=''
+opt.pumheight = 10
+opt.guicursor = ""
+opt.cursorline = true
+
+opt.wrap = false
 
 -- Numbers
 opt.number = true
-opt.ruler = false
+opt.ruler = true
 
 opt.signcolumn = "yes"
 opt.splitbelow = true
@@ -34,9 +37,9 @@ opt.timeoutlen = 400
 opt.undofile = false
 opt.swapfile = false
 
+
 opt.timeoutlen = 400
 opt.updatetime = 250
-
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"

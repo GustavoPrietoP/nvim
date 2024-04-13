@@ -21,4 +21,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
 
-vim.cmd "colorscheme mountaineer"
+vim.cmd "colorscheme  helix"

@@ -39,6 +39,9 @@ cmp.setup {
       "s",
     }),
   },
+  formatting = {
+    fields ={'abbr', 'kind'},
+  },
   sources = cmp.config.sources {
     { name = "nvim_lsp" },
     { name = "luasnip" },

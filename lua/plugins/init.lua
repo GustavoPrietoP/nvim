@@ -3,7 +3,6 @@ local plugins = {
     lazy = true,
     "nvim-lua/plenary.nvim",
   },
-
   {
     "stevearc/oil.nvim",
     opts = {},
@@ -13,19 +12,24 @@ local plugins = {
       require "plugins.configs.oil"
     end,
   },
-
   {
     "TheNiteCoder/mountaineer.vim",
     priority = 1000,
   },
+  {
+    "typicode/bg.nvim",
+    lazy = false,
+  },
 
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require "plugins.configs.lualine"
-    end,
+    "yorickpeterse/Autumn.vim",
   },
+
+  {
+    "GustavoPrietoP/helix-nvim"
+  },
+
+
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
@@ -39,6 +43,14 @@ local plugins = {
     config = function()
       require("nvim-tree").setup()
     end,
+  },
+
+  {
+    "Shatur/neovim-ayu",
+  },
+
+  {
+    "archseer/colibri.vim",
   },
 
   -- icons, for UI related plugins
@@ -76,12 +88,19 @@ local plugins = {
   },
 
   -- statusline
+  {
+    "echasnovski/mini.statusline",
+    config = function()
+      require("mini.statusline").setup { set_vim_settings = false }
+    end,
+  },
 
   -- we use cmp plugin only when in insert mode
   -- so lets lazyload it at InsertEnter event, to know all the events check h-events
   -- completion , now all of these plugins are dependent on cmp, we load them after cmp
   {
-    "hrsh7th/nvim-cmp",
+    "benlubas/nvim-cmp",
+    branch = "up_to_date",
     event = "InsertEnter",
     dependencies = {
       -- cmp sources
@@ -143,24 +162,12 @@ local plugins = {
       require "plugins.configs.lspconfig"
     end,
   },
-
   -- formatting , linting
   {
     "stevearc/conform.nvim",
     lazy = true,
     config = function()
       require "plugins.configs.conform"
-    end,
-  },
-
-  -- indent lines
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("ibl").setup {
-        scope = { enabled = false },
-      }
     end,
   },
 
