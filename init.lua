@@ -1,10 +1,8 @@
 require "options"
 require "mappings"
 require "commands"
-
 -- bootstrap plugins & lazy.nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim" -- path where its going to be installed
-
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -20,5 +18,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require "plugins"
-
-vim.cmd "colorscheme  helix"
+vim.cmd "colorscheme default"

@@ -6,56 +6,34 @@ local plugins = {
   {
     "stevearc/oil.nvim",
     opts = {},
+    event = "BufEnter",
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require "plugins.configs.oil"
     end,
   },
-  {
-    "TheNiteCoder/mountaineer.vim",
-    priority = 1000,
-  },
-  {
-    "typicode/bg.nvim",
-    lazy = false,
-  },
 
   {
-    "yorickpeterse/Autumn.vim",
+    "echasnovski/mini.statusline",
+    version = "*",
+    config = function ()
+      require('mini.statusline').setup()
+    end
   },
-
-  {
-    "GustavoPrietoP/helix-nvim"
-  },
-
 
   {
     "NvChad/nvim-colorizer.lua",
+    event = "InsertEnter",
     config = function()
       require("colorizer").setup()
     end,
-  },
-  -- file tree
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    config = function()
-      require("nvim-tree").setup()
-    end,
-  },
-
-  {
-    "Shatur/neovim-ayu",
-  },
-
-  {
-    "archseer/colibri.vim",
   },
 
   -- icons, for UI related plugins
   {
     "nvim-tree/nvim-web-devicons",
+    event = "BufEnter",
     config = function()
       require("nvim-web-devicons").setup()
     end,
@@ -64,34 +42,10 @@ local plugins = {
   -- syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "BufRead",
     build = ":TSUpdate",
     config = function()
       require "plugins.configs.treesitter"
-    end,
-  },
-
-  -- buffer + tab line
-  {
-    "akinsho/bufferline.nvim",
-    event = "BufReadPre",
-    config = function()
-      require "plugins.configs.bufferline"
-    end,
-  },
-
-  {
-    "echasnovski/mini.tabline",
-    version = "*",
-    config = function()
-      require "plugins.configs.bufferline"
-    end,
-  },
-
-  -- statusline
-  {
-    "echasnovski/mini.statusline",
-    config = function()
-      require("mini.statusline").setup { set_vim_settings = false }
     end,
   },
 
@@ -188,26 +142,13 @@ local plugins = {
       require("gitsigns").setup()
     end,
   },
-  -- comment plugin
-  {
-    "numToStr/Comment.nvim",
-    lazy = true,
-    config = function()
-      require("Comment").setup()
-    end,
-  },
+
   -- amongst your other plugins
   {
     "akinsho/toggleterm.nvim",
+    event = "InsertEnter",
     version = "*",
     config = true,
-  },
-
-  -- rust tools
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
-    ft = { "rust" },
   },
 }
 

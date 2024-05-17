@@ -21,12 +21,18 @@ opt.mouse = "a"
 
 opt.pumheight = 10
 opt.guicursor = ""
-opt.cursorline = true
+opt.cursorline = false
+
+opt.scrolloff = 8
+
+opt.pumblend = 0
 
 opt.wrap = false
 
 -- Numbers
 opt.number = true
+opt.relativenumber = true
+
 opt.ruler = true
 
 opt.signcolumn = "yes"
@@ -36,7 +42,6 @@ opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = false
 opt.swapfile = false
-
 
 opt.timeoutlen = 400
 opt.updatetime = 250
